@@ -1,22 +1,21 @@
 <template>
   <layout>
     <template v-slot:default>
-      <img alt="Vue logo" src="./assets/logo.png">
-      <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+      <game />
     </template>
   </layout>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
 import Layout from './components/Layout.vue'
+import Game from './components/Game.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
-    HelloWorld,
-    Layout
+    Layout,
+    Game
   }
 })
 </script>
