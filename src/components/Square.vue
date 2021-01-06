@@ -1,6 +1,6 @@
 <template>
-  <button class="square">
-<!--    TODO-->
+  <button class="square" @click="onclick">
+    {{ value }}
   </button>
 </template>
 
@@ -8,7 +8,11 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'Square'
+  name: 'Square',
+  props: {
+    value: String,
+    onclick: Function
+  }
 })
 </script>
 
