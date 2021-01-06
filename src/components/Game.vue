@@ -4,8 +4,8 @@
     <board />
   </div>
   <div class="game-info">
-    <div>status</div>
-    <ol>todo</ol>
+<!--    <div>status</div>-->
+<!--    <ol>todo</ol>-->
   </div>
 </div>
 </template>
