@@ -5,7 +5,11 @@
   </div>
   <div class="game-info">
     <div>{{ getStatus }}</div>
-<!--    <ol>todo</ol>-->
+    <ol>
+      <li v-for="(_, move) in history" :key="move">
+          <button @onclick="jumpTo(move)">{{ move ? `Go to move #${move}` : 'Go to game start' }}</button>
+      </li>
+    </ol>
   </div>
 </div>
 </template>
@@ -19,10 +23,10 @@ export default defineComponent({
   components: { Board },
   data () {
     return {
-      status: 'Next player: X',
       history: [{
         squares: Array(9).fill(null)
       }],
+      stepNumber: 0,
       xIsNext: true
     }
   },
@@ -40,7 +44,7 @@ export default defineComponent({
       return status
     },
     getCurrent () {
-      return this.history[this.history.length - 1].squares
+      return this.history[this.stepNumber].squares
     }
   },
   methods: {
@@ -74,6 +78,10 @@ export default defineComponent({
         }
       }
       return null
+    },
+    jumpTo (step) {
+      this.stepNumber = step
+      this.xIsNext = (step % 2) === 0
     }
   }
 })
