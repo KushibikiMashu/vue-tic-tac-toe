@@ -7,7 +7,7 @@
     <div>{{ getStatus }}</div>
     <ol>
       <li v-for="(_, move) in history" :key="move">
-          <button @onclick="jumpTo(move)">{{ move ? `Go to move #${move}` : 'Go to game start' }}</button>
+          <button @click="jumpTo(move)">{{ move ? `Go to move #${move}` : 'Go to game start' }}</button>
       </li>
     </ol>
   </div>
