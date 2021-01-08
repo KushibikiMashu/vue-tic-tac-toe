@@ -58,6 +58,7 @@ export default defineComponent({
       squares[i] = this.xIsNext ? 'X' : 'O'
 
       this.history = this.history.concat([{ squares }])
+      this.stepNumber += 1
       this.xIsNext = !this.xIsNext
     },
     calculateWinner (squares) {
