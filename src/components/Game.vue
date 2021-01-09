@@ -10,33 +10,22 @@
     <div class="game-info">
       <div>{{ getStatus }}</div>
       <div>
-        <button @click="toggle">昇順・降順</button>
+        <button @click="toggle">{{ isDesc ? '降順' : '昇順' }}</button>
       </div>
       <ol>
         <li v-for="(_, move) in history" :key="move">
           <button @click="jumpTo(move)">
-            <!-- FIXME リファクタリングできるはず -->
-            <span v-if="isDesc">
-              <span
-                v-if="move === stepNumber"
-                class="game-stepButton-bold"
-              >
-                {{ move ? `Go to move #${move}` : 'Go to game start' }}
-              </span>
-              <span v-else>
-                {{ move ? `Go to move #${move}` : 'Go to game start' }}
-              </span>
-            </span>
-            <span v-else>
-              <span
-                v-if="move === stepNumber"
-                class="game-stepButton-bold"
-              >
-                {{ move === history.length - 1 ? 'Go to game start' : `Go to move #${history.length - move - 1}` }}
-              </span>
-              <span v-else>
-                {{ move === history.length - 1 ? 'Go to game start' : `Go to move #${history.length - move - 1}` }}
-              </span>
+            <span :class="[move === stepNumber ? 'game-stepButton-bold': '']">
+              {{
+                isDesc ?
+                  move ? `Go to move #${move}` : 'Go to game start'
+                  : ''
+              }}
+              {{
+                !isDesc ?
+                  move === history.length - 1 ? 'Go to game start' : `Go to move #${history.length - move - 1}`
+                  : ''
+              }}
             </span>
           </button>
         </li>
