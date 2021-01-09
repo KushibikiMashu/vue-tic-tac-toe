@@ -1,8 +1,5 @@
 <template>
-  <button v-if="!isWinnerCell" class="square" @click="onclick">
-    {{ value }}
-  </button>
-  <button v-else class="square-win" @click="onclick">
+  <button :class="[isWinnerCell ? 'square-win' : 'square']" @click="onclick">
     {{ value }}
   </button>
 </template>
