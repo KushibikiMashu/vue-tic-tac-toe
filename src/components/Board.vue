@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- FIXME ループで表現する -->
     <div class="board-row">
       <square :value="squares[0]" :onclick="() => onclick(0)" :isWinnerCell="isWinnerCell(0)"/>
       <square :value="squares[1]" :onclick="() => onclick(1)" :isWinnerCell="isWinnerCell(1)"/>

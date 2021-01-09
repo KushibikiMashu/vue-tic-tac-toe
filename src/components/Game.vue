@@ -15,6 +15,7 @@
       <ol>
         <li v-for="(_, move) in history" :key="move">
           <button @click="jumpTo(move)">
+            <!-- FIXME リファクタリングできるはず -->
             <span v-if="isDesc">
               <span
                 v-if="move === stepNumber"
