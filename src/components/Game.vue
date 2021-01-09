@@ -2,13 +2,13 @@
   <div class="game">
     <div class="game-board">
       <board
-        :squares="getCurrent"
+        :squares="current"
         :onclick="(i) => handleClick(i)"
         :winnerCells="winnerCells"
       />
     </div>
     <div class="game-info">
-      <div>{{ getStatus }}</div>
+      <div>{{ status }}</div>
       <div>
         <button @click="toggle">{{ isDesc ? '降順' : '昇順' }}</button>
       </div>
@@ -46,7 +46,7 @@ export default defineComponent({
     }
   },
   computed: {
-    getStatus () {
+    status () {
       const current = this.history[this.history.length - 1]
       const winner = this.calculateWinner(current.squares)
       let status
@@ -63,7 +63,7 @@ export default defineComponent({
 
       return status
     },
-    getCurrent () {
+    current () {
       return this.history[this.stepNumber].squares
     }
   },
