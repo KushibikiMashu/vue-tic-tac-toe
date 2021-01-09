@@ -1,17 +1,21 @@
 <template>
-<div class="game">
-  <div class="game-board">
-    <board :squares="getCurrent" :onclick="(i) => handleClick(i)" />
+  <div class="game">
+    <div class="game-board">
+      <board :squares="getCurrent" :onclick="(i) => handleClick(i)"/>
+    </div>
+    <div class="game-info">
+      <div>{{ getStatus }}</div>
+      <ol>
+        <li v-for="(_, move) in history" :key="move">
+          <button @click="jumpTo(move)">
+            <span v-if="move === stepNumber"
+                  class="game-stepButton-bold">{{ move ? `Go to move #${move}` : 'Go to game start' }}</span>
+            <span v-else>{{ move ? `Go to move #${move}` : 'Go to game start' }}</span>
+          </button>
+        </li>
+      </ol>
+    </div>
   </div>
-  <div class="game-info">
-    <div>{{ getStatus }}</div>
-    <ol>
-      <li v-for="(_, move) in history" :key="move">
-          <button @click="jumpTo(move)">{{ move ? `Go to move #${move}` : 'Go to game start' }}</button>
-      </li>
-    </ol>
-  </div>
-</div>
 </template>
 
 <script>
@@ -104,5 +108,9 @@ export default defineComponent({
 
 ol, ul {
   padding-left: 30px;
+}
+
+.game-stepButton-bold {
+  font-weight: bold;
 }
 </style>
