@@ -53,12 +53,10 @@ export default defineComponent({
 
       if (winner) {
         status = 'Winner: ' + winner
+      } else if (this.history.length === 10 && this.winnerCells === null) {
+        status = 'No winner'
       } else {
         status = `Next player: ${this.xIsNext ? 'X' : 'O'}`
-      }
-
-      if (this.history.length === 10 && this.winnerCells === null) {
-        status = 'No winner'
       }
 
       return status
