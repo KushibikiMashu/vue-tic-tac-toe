@@ -13,12 +13,13 @@
         <button @click="toggle">{{ isDesc ? '降順' : '昇順' }}</button>
       </div>
       <ol>
-        <li v-for="(_, move) in history" :key="move">
+        <li v-for="({ location }, move) in history" :key="move">
           <button @click="jumpTo(move)">
             <span :class="[move === stepNumber ? 'game-stepButton-bold': '']">
               {{ isDesc ? getDescButtonBody(move) : getAscButtonBody(move) }}
             </span>
           </button>
+          <span v-if="location.row && location.column">（{{ location.row }}, {{ location.column }}）</span>
         </li>
       </ol>
     </div>
@@ -35,7 +36,8 @@ export default defineComponent({
   data () {
     return {
       history: [{
-        squares: Array(9).fill(null)
+        squares: Array(9).fill(null),
+        location: { row: null, column: null }
       }],
       stepNumber: 0,
       xIsNext: true,
@@ -74,8 +76,10 @@ export default defineComponent({
       }
 
       squares[i] = this.xIsNext ? 'X' : 'O'
+      const location = { row: Math.floor(i / 3) + 1, column: i % 3 + 1 }
 
-      this.history = this.history.concat([{ squares }])
+      const newHistory = [{ squares, location }]
+      this.history = this.isDesc ? this.history.concat(newHistory) : newHistory.concat(this.history)
       this.stepNumber += 1
       this.xIsNext = !this.xIsNext
     },
