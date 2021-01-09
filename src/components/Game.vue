@@ -67,10 +67,15 @@ export default defineComponent({
       const current = this.history[this.history.length - 1]
       const winner = this.calculateWinner(current.squares)
       let status
+
       if (winner) {
         status = 'Winner: ' + winner
       } else {
         status = `Next player: ${this.xIsNext ? 'X' : 'O'}`
+      }
+
+      if (this.history.length === 10 && this.winnerCells === null) {
+        status = 'No winner'
       }
 
       return status
@@ -111,6 +116,7 @@ export default defineComponent({
           return squares[a]
         }
       }
+
       return null
     },
     jumpTo (step) {
