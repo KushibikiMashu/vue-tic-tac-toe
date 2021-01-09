@@ -16,16 +16,7 @@
         <li v-for="(_, move) in history" :key="move">
           <button @click="jumpTo(move)">
             <span :class="[move === stepNumber ? 'game-stepButton-bold': '']">
-              {{
-                isDesc ?
-                  move ? `Go to move #${move}` : 'Go to game start'
-                  : ''
-              }}
-              {{
-                !isDesc ?
-                  move === history.length - 1 ? 'Go to game start' : `Go to move #${history.length - move - 1}`
-                  : ''
-              }}
+              {{ isDesc ? getDescButtonBody(move) : getAscButtonBody(move) }}
             </span>
           </button>
         </li>
@@ -117,6 +108,14 @@ export default defineComponent({
       this.isDesc = !this.isDesc
       this.stepNumber = this.history.length - 1 - this.stepNumber
       this.history = this.history.reverse()
+    },
+    getDescButtonBody (move) {
+      return move ? `Go to move #${move}` : 'Go to game start'
+    },
+    getAscButtonBody (move) {
+      const length = this.history.length - 1
+
+      return move === length ? 'Go to game start' : `Go to move #${length - move}`
     }
   }
 })
