@@ -1,7 +1,11 @@
 <template>
   <div class="game">
     <div class="game-board">
-      <board :squares="getCurrent" :onclick="(i) => handleClick(i)"/>
+      <board
+        :squares="getCurrent"
+        :onclick="(i) => handleClick(i)"
+        :winnerCells="winnerCells"
+      />
     </div>
     <div class="game-info">
       <div>{{ getStatus }}</div>
@@ -54,7 +58,8 @@ export default defineComponent({
       }],
       stepNumber: 0,
       xIsNext: true,
-      isDesc: true
+      isDesc: true,
+      winnerCells: null
     }
   },
   computed: {
@@ -102,6 +107,7 @@ export default defineComponent({
       for (let i = 0; i < lines.length; i++) {
         const [a, b, c] = lines[i]
         if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+          this.winnerCells = lines[i]
           return squares[a]
         }
       }

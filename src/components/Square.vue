@@ -1,5 +1,8 @@
 <template>
-  <button class="square" @click="onclick">
+  <button v-if="!isWinnerCell" class="square" @click="onclick">
+    {{ value }}
+  </button>
+  <button v-else class="square-win" @click="onclick">
     {{ value }}
   </button>
 </template>
@@ -11,13 +14,14 @@ export default defineComponent({
   name: 'Square',
   props: {
     value: String,
-    onclick: Function
+    onclick: Function,
+    isWinnerCell: Boolean
   }
 })
 </script>
 
 <style scoped>
-.square {
+.square,.square-win {
   background: #fff;
   border: 1px solid #999;
   float: left;
@@ -32,8 +36,12 @@ export default defineComponent({
   width: 34px;
 }
 
-.square:focus {
+.square:focus, .square-win:focus {
   outline: none;
   background: #ddd;
+}
+
+.square-win {
+  background: red;
 }
 </style>
