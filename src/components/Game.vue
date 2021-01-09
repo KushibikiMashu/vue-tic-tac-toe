@@ -69,6 +69,10 @@ export default defineComponent({
   },
   methods: {
     handleClick (i) {
+      if (this.winnerCells) {
+        return
+      }
+
       const current = this.history[this.history.length - 1]
       const squares = current.squares.slice()
       if (this.calculateWinner(squares) || squares[i]) {
