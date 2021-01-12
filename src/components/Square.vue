@@ -2,7 +2,7 @@
   <button
     class="square"
     :class="{'square-win': isWinnerCell}"
-    @click="onclick"
+    @click="handleClick"
   >
     {{ value }}
   </button>
@@ -15,8 +15,14 @@ export default defineComponent({
   name: 'Square',
   props: {
     value: String,
-    onclick: Function,
+    index: Number,
     isWinnerCell: Boolean
+  },
+  emits: ['clickSquare'],
+  methods: {
+    handleClick () {
+      this.$emit('clickSquare', this.index)
+    }
   }
 })
 </script>
