@@ -5,8 +5,9 @@
         v-for="j in [i * 3 - 3, i * 3 - 2, i * 3 - 1]"
         :key="j"
         :value="squares[j]"
-        :onclick="() => onclick(j)"
+        :index="j"
         :isWinnerCell="isWinnerCell(j)"
+        v-on:clickSquare="handleClick"
       />
     </div>
   </div>
@@ -23,12 +24,12 @@ export default defineComponent({
   },
   props: {
     squares: Array,
-    onclick: Function,
     winnerCells: {
       type: Array,
       default: null
     }
   },
+  emits: ['clickSquare'],
   data () {
     return {
       rows: [0, 1, 2]
@@ -41,6 +42,9 @@ export default defineComponent({
       }
 
       return this.winnerCells.includes(i)
+    },
+    handleClick (i: number) {
+      this.$emit('clickSquare', i)
     }
   }
 })

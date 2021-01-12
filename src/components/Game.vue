@@ -3,8 +3,8 @@
     <div class="game-board">
       <board
         :squares="current"
-        :onclick="(i) => handleClick(i)"
         :winnerCells="winnerCells"
+        v-on:clickSquare="handleClick"
       />
     </div>
     <div class="game-info">
