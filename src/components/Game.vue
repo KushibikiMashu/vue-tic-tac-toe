@@ -15,7 +15,7 @@
       <ol>
         <li v-for="({ location }, move) in history" :key="move">
           <button @click="jumpTo(move)">
-            <span :class="[move === stepNumber ? 'game-stepButton-bold': '']">
+            <span :class="{'game-stepButton-bold': move === stepNumber}">
               {{ isDesc ? getDescButtonBody(move) : getAscButtonBody(move) }}
             </span>
           </button>

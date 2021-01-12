@@ -1,5 +1,9 @@
 <template>
-  <button :class="[isWinnerCell ? 'square-win' : 'square']" @click="onclick">
+  <button
+    class="square"
+    :class="{'square-win': isWinnerCell}"
+    @click="onclick"
+  >
     {{ value }}
   </button>
 </template>
@@ -18,7 +22,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.square,.square-win {
+.square {
   background: #fff;
   border: 1px solid #999;
   float: left;
@@ -33,7 +37,7 @@ export default defineComponent({
   width: 34px;
 }
 
-.square:focus, .square-win:focus {
+.square:focus {
   outline: none;
   background: #ddd;
 }
