@@ -1,6 +1,6 @@
 <template>
   <div class="game">
-    <div class="game-board">
+    <div>
       <board
         :squares="current"
         :winnerCells="winnerCells"
@@ -131,10 +131,6 @@ export default defineComponent({
 .game {
   display: flex;
   flex-direction: row;
-}
-
-.game-board {
-
 }
 
 .game-info {
