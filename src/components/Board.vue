@@ -30,11 +30,6 @@ export default defineComponent({
     }
   },
   emits: ['clickSquare'],
-  data () {
-    return {
-      rows: [0, 1, 2]
-    }
-  },
   methods: {
     isWinnerCell (i: number): boolean {
       if (!this.winnerCells) {
