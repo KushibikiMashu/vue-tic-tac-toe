@@ -7,7 +7,7 @@
       <a href="https://twitter.com/Panda_Program">Twitter</a>
     </p>
   </nav>
-  <main>
+  <main id="app">
     <slot></slot>
   </main>
 </template>
@@ -21,5 +21,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+}
 </style>
